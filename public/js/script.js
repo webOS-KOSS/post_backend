@@ -32,6 +32,14 @@ $(function(){
         }
       });
     }
+
+    // function getCategoryList() {
+// 	this.axios.get("http://localhost:3000/boards/categorys").then((res)=>{
+// 		this.categoryList = res.data.data;
+// 	}).catch((err) => {
+// 		console.log(err);
+// 	});
+// }
   
     convertDate();
     convertDateTime();

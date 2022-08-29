@@ -21,9 +21,11 @@
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.34",
     "mongoose": "^6.5.2",
+    "node-schedule": "^2.1.0",
     "parse": "^3.4.3",
     "prompt-sync": "^4.2.0",
     "request": "^2.88.2",
+    "schedular": "^0.0.1",
     "xml2js": "^0.4.23"
   }
 }

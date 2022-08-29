@@ -26,12 +26,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 app.use(flash()); 
-app.use(session({secret:'MySecret', resave:true, saveUninitialized:true})); //3
+app.use(session({secret:'MySecret', resave:true, saveUninitialized:true})); 
 
 app.engine('html', require('ejs').renderFile);  //html로 렌더링
 // Routes
-app.use('/', require('./routes/home'));
-app.use('/posts', require('./routes/posts'));
+app.use('/', require('./routes/notice'));
+// app.use('/posts', require('./routes/posts/notice'));
 // Port setting
 var port = 3000;
 app.listen(port, function(){

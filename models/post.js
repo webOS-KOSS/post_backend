@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 
 // schema
-var postSchema = mongoose.Schema({ // 1
+var postSchema = mongoose.Schema({ 
   title:{type:String, required:[true, 'Title is required!']},
   body:{type:String, required:[true, 'Title is required!']},
-  // category: {type: postSchema.Types.ObjectId, ref: 'category'},
-  createdAt:{type:Date, default:Date.now}, // 2
+  category: {type: String, require: true},
+  createdAt:{type:Date, default:Date.now}, 
   updatedAt:{type:Date},
 });
 
