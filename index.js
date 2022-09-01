@@ -30,7 +30,8 @@ app.use(session({secret:'MySecret', resave:true, saveUninitialized:true}));
 
 app.engine('html', require('ejs').renderFile);  //html로 렌더링
 // Routes
-app.use('/', require('./routes/notice'));
+app.use('/', require('./routes/post'));
+
 // app.use('/posts', require('./routes/posts/notice'));
 // Port setting
 var port = 3000;

@@ -9,7 +9,7 @@ var postSchema = mongoose.Schema({
 });
 
 // model & export
-var Post = mongoose.model('notice', postSchema);
+var Post = mongoose.model('post', postSchema);
 
 module.exports = Post;
 

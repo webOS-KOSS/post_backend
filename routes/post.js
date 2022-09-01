@@ -57,7 +57,6 @@ router.put('/posts/:id', function(req, res){
         Post.findOneAndUpdate({_id:req.params.id}, req.body)
             .exec(function(err, post){
         if(err) return res.json(err);
-        console.log(req.body.password);
         res.redirect("/notice/"+req.params.id);
     });
     } else{
@@ -128,7 +127,6 @@ router.put('/general/posts/:id', function(req, res){
         Post.findOneAndUpdate({_id:req.params.id}, req.body)
             .exec(function(err, post){
         if(err) return res.json(err);
-        console.log(req.body.password);
         res.redirect("/general/"+req.params.id);
     });
     } else{
