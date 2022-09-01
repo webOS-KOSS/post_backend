@@ -1,13 +1,14 @@
 var express  = require('express');
 var router = express.Router();
 var Post = require('../models/Post');
+const generalPost = require('../models/Post');
 var pass = 'webOS';
 
 /*---------------------------notice------------------------- */
 // Index 
 router.get('/', function(req, res){
     //시간순 정렬
-    Post.find({})                 
+    Post.find({selectbox:'notice'})                 
   .sort('-createdAt') //createdAt순서대로 정렬(내림차순이라 -붙음)           
   .exec(function(err, posts){    
     if(err) return res.json(err);
@@ -22,12 +23,11 @@ router.get('/new', function(req, res){
 
 // create
 router.post('/', function(req, res){
-    if(pass == req.body.password){
-        Post.create(req.body, function(err, post){
+    if(req.body.password == "webOS"){
+      Post.create(req.body, function(err, post){
         if(err) return res.json(err);
         });
         res.redirect('/');
-
     }
     else{
         res.redirect('/');
@@ -79,7 +79,7 @@ router.delete('/:id', function(req, res){
 //Index
 router.get('/general', function(req, res){
     //시간순 정렬
-    Post.find({})                 
+    Post.find({selectbox:'general'})                 
   .sort('-createdAt') //createdAt순서대로 정렬(내림차순이라 -붙음)           
   .exec(function(err, posts){    
     if(err) return res.json(err);
@@ -94,16 +94,23 @@ router.get('/general/new', function(req, res){
 
 // create
 router.post('/general', function(req, res){
-    if(pass == req.body.password){
-        Post.create(req.body, function(err, post){
+  if(req.body.password == "webOS"){
+    if(req.body.selectbox == "notice"){
+      Post.create(req.body, function(err, post){
+        if(err) return res.json(err);
+        });
+        res.redirect('/');
+    }
+    else if(req.body.selectbox == "general"){
+      Post.create(req.body, function(err, post){
         if(err) return res.json(err);
         });
         res.redirect('/general');
-
     }
-    else{
-        res.redirect('/general');
-    }
+  }
+  else{
+      res.redirect('/');
+  }
 });
 
 // show
