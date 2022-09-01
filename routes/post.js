@@ -12,13 +12,13 @@ router.get('/', function(req, res){
   .sort('-createdAt') //createdAt순서대로 정렬(내림차순이라 -붙음)           
   .exec(function(err, posts){    
     if(err) return res.json(err);
-    res.render('posts/notice/notice', {posts:posts});
+    res.render('posts/notice', {posts:posts});
   });
 });
 
 // New
 router.get('/new', function(req, res){
-  res.render('posts/notice/new');
+  res.render('posts/new');
 });
 
 // create
@@ -82,13 +82,13 @@ router.get('/general', function(req, res){
   .sort('-createdAt') //createdAt순서대로 정렬(내림차순이라 -붙음)           
   .exec(function(err, posts){    
     if(err) return res.json(err);
-    res.render('posts/general/general', {posts:posts});
+    res.render('posts/general', {posts:posts});
   });
 });
 
 // New
 router.get('/general/new', function(req, res){
-    res.render('posts/general/new');
+    res.render('posts/new');
   });
 
 // create
