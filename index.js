@@ -3,13 +3,14 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var flash = require('connect-flash'); // 1
-var session = require('express-session'); // 1
+var flash = require('connect-flash');
+var session = require('express-session'); 
 var app = express();
+const schedule = require('node-schedule');
+// const weather = require('./weather/weather');
 
 // DB setting
-mongoose.connect(process.env.MONGO_URL
-  );
+mongoose.connect(process.env.MONGO_URL);
 var db = mongoose.connection;
 db.once('open', function(){
   console.log('DB connected');
@@ -29,12 +30,19 @@ app.use(flash());
 app.use(session({secret:'MySecret', resave:true, saveUninitialized:true})); 
 
 app.engine('html', require('ejs').renderFile);  //html로 렌더링
+
 // Routes
 app.use('/', require('./routes/post'));
 
-// app.use('/posts', require('./routes/posts/notice'));
 // Port setting
 var port = 3000;
 app.listen(port, function(){
   console.log('server on! http://localhost:'+port);
+  
+  /*-------------------weather alarm------------------------- */
+  schedule.scheduleJob('0 * * * * *', function(){
+    console.log(new Date() + ' scheduler running!');
+    var weather = require('./weather/weather');
+    
+  });
 });
