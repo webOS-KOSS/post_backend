@@ -35,7 +35,7 @@ app.engine('html', require('ejs').renderFile);  //html로 렌더링
 app.use('/', require('./routes/post'));
 
 // Port setting
-var port = 3000;
+var port = 80;
 app.listen(port, function(){
   console.log('server on! http://localhost:'+port);
   
