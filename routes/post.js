@@ -26,8 +26,10 @@ router.post('/', function(req, res){
   noticeRequest.selectbox = 'notice';
   noticeRequest.title = req.body.title;
   noticeRequest.body = req.body.body;
-  let applaince = req.body.applaince;
-  let operation = req.body.operation;
+  if (req.body.notification == 'noti_On'){
+    let applaince = req.body.applaince;
+    let operation = req.body.operation;
+  }
 
   if(req.body.password == "notice"){
   Post.create(noticeRequest, function(err, post){
