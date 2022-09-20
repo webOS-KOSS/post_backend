@@ -5,17 +5,9 @@
   </head>
   <body>
     <%- include('../../partials/nav') %>
-
     <div class="container mb-3">
       <form action="/" method="post">
-        <div class="form-group">
-          <label for="category">Category</label>
-          <select name="selectbox">
-            <option value="notice">Notice</option>
-            <option value="general">General</option>
-          </select>
-        </div>
-
+        <h5>공지 글쓰기</h5>
         <div class="form-group">
           <label for="title">Title</label>
           <input type="text" id="title" name="title" value="" class="form-control" placeholder="Title">
@@ -26,11 +18,27 @@
           <textarea id="body" name="body" rows="5" class="form-control" placeholder="Content"></textarea>
         </div>
         
+        <!-- <div>
+          <form id="add-book">
+            <input type="checkbox" id="hide" />
+            <label for="hide">알람 여부</label>
+          </form>
+        </div> -->
+
         <div>
-        <form id="add-book">
-          <input type="checkbox" id="hide" />
-          <label for="hide">Hide all books</label>
-        </form>
+          <label for="appliance">가전 제어</label>
+            <select name="appliance">
+              <option value="blind">blind</option>
+              <option value="window">window</option>
+              <option value="light">light</option>
+            </select>
+
+          <label for="appliance">동작 방식</label>
+            <select name="operation">
+              <option value="on">ON</option>
+              <option value="off">OFF</option>
+            </select>
+          <label for="time">시간</label>
         </div>
         
         <div class="form-group">

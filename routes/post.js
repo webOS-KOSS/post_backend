@@ -22,27 +22,21 @@ router.get('/notice/new', function(req, res){
 
 // create
 router.post('/', function(req, res){
-  if(req.body.selectbox == "notice"){
-    if(req.body.password == "notice"){
-    Post.create(req.body, function(err, post){
-      if(err) return res.json(err);
-      res.redirect('/');
-      });
-    }
-    else{
-      res.redirect('/');
-    }
+  var noticeRequest = new Object();
+  noticeRequest.selectbox = 'notice';
+  noticeRequest.title = req.body.title;
+  noticeRequest.body = req.body.body;
+  let applaince = req.body.applaince;
+  let operation = req.body.operation;
+
+  if(req.body.password == "notice"){
+  Post.create(noticeRequest, function(err, post){
+    if(err) return res.json(err);
+    res.redirect('/');
+    });
   }
-  else if(req.body.selectbox == "general"){
-    if(req.body.password == "general"){
-    Post.create(req.body, function(err, post){
-      if(err) return res.json(err);
-      res.redirect('/general');
-      });
-    }
-    else{
-      res.redirect('/');
-    }
+  else{
+    res.redirect('/');
   }
 });
 
@@ -105,27 +99,18 @@ router.get('/general/new', function(req, res){
 
 // create
 router.post('/general', function(req, res){
-    if(req.body.selectbox == "notice"){
-      if(req.body.password == "notice"){
-      Post.create(req.body, function(err, post){
-        if(err) return res.json(err);
-        });
-        res.redirect('/notice');
-      }
-      else{
-        res.redirect('/');
-      }
+  var generalRequest = new Object();
+  generalRequest.selectbox = 'general';
+  generalRequest.title = req.body.title;
+  generalRequest.body = req.body.body;
+  if(req.body.password == "general"){
+    Post.create(generalRequest, function(err, post){
+      if(err) return res.json(err);
+      res.redirect('/general');
+      });
     }
     else{
-      if(req.body.password == "general"){
-      Post.create(req.body, function(err, post){
-        if(err) return res.json(err);
-        });
-        res.redirect('/general');
-      }
-      else{
-        res.redirect('/');
-      }
+      res.redirect('/');
     }
   });
 

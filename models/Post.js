@@ -4,7 +4,7 @@ var postSchema = mongoose.Schema({
   selectbox: {type: String, require: true},
   title:{type:String, required:[true, 'Title is required!']},
   body:{type:String, required:[true, 'Title is required!']},
-  createdAt:{type:Date, default:Date.now}, 
+  createdAt:{type:Date, required: true, default:Date.now}, 
   updatedAt:{type:Date},
 });
 
