@@ -18,7 +18,6 @@ router.get('/', function(req, res){
 router.get('/notice/new', function(req, res){
   res.render('posts/notice/new');
 });
-//추천여부, 시작시간,끝시간, 어떤 가전제어 어떻게?
 
 // create
 router.post('/', function(req, res){
