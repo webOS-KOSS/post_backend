@@ -1,8 +1,7 @@
 var express  = require('express');
 var router = express.Router();
 var Post = require('../models/Post');
-const generalPost = require('../models/Post');
-var pass = 'webOS';
+var func = require('../public/js/func');
 
 /*---------------------------notice------------------------- */
 // Index 
@@ -12,26 +11,40 @@ router.get('/', function(req, res){
   .sort('-createdAt') //createdAt순서대로 정렬(내림차순이라 -붙음)           
   .exec(function(err, posts){    
     if(err) return res.json(err);
-    res.render('posts/notice', {posts:posts});
+    res.render('posts/notice/notice', {posts:posts});
   });
 });
 
 // New
-router.get('/new', function(req, res){
-  res.render('posts/new');
+router.get('/notice/new', function(req, res){
+  res.render('posts/notice/new'); 
 });
+//추천여부, 시작시간,끝시간, 어떤 가전제어 어떻게?
 
 // create
 router.post('/', function(req, res){
-    if(req.body.password == "webOS"){
-      Post.create(req.body, function(err, post){
-        if(err) return res.json(err);
-        });
-        res.redirect('/');
+  if(req.body.selectbox == "notice"){
+    if(req.body.password == "notice"){
+    Post.create(req.body, function(err, post){
+      if(err) return res.json(err);
+      res.redirect('/');
+      });
     }
     else{
-        res.redirect('/');
+      res.redirect('/');
     }
+  }
+  else if(req.body.selectbox == "general"){
+    if(req.body.password == "general"){
+    Post.create(req.body, function(err, post){
+      if(err) return res.json(err);
+      res.redirect('/general');
+      });
+    }
+    else{
+      res.redirect('/');
+    }
+  }
 });
 
 // show
@@ -82,35 +95,40 @@ router.get('/general', function(req, res){
   .sort('-createdAt') //createdAt순서대로 정렬(내림차순이라 -붙음)           
   .exec(function(err, posts){    
     if(err) return res.json(err);
-    res.render('posts/general', {posts:posts});
+    res.render('posts/general/general', {posts:posts});
   });
 });
 
 // New
 router.get('/general/new', function(req, res){
-    res.render('posts/new');
+    res.render('posts/general/new');
   });
 
 // create
 router.post('/general', function(req, res){
-  if(req.body.password == "webOS"){
     if(req.body.selectbox == "notice"){
+      if(req.body.password == "notice"){
       Post.create(req.body, function(err, post){
         if(err) return res.json(err);
         });
+        res.redirect('/notice');
+      }
+      else{
         res.redirect('/');
+      }
     }
-    else if(req.body.selectbox == "general"){
+    else{
+      if(req.body.password == "general"){
       Post.create(req.body, function(err, post){
         if(err) return res.json(err);
         });
         res.redirect('/general');
+      }
+      else{
+        res.redirect('/');
+      }
     }
-  }
-  else{
-      res.redirect('/');
-  }
-});
+  });
 
 // show
 router.get('/general/:id', function(req, res){
@@ -122,7 +140,7 @@ router.get('/general/:id', function(req, res){
 
 // update
 router.put('/general/posts/:id', function(req, res){
-    if(pass == req.body.password){
+    if(req.body.password == "general"){
         req.body.updatedAt = Date.now(); 
         Post.findOneAndUpdate({_id:req.params.id}, req.body)
             .exec(function(err, post){
@@ -140,7 +158,7 @@ router.put('/general/posts/:id', function(req, res){
 router.delete('/general/:id', function(req, res){
     Post.deleteOne({_id:req.params.id}, function(err){
       if(err) return res.json(err);
-      res.redirect('/general');
+      res.redirect('/posts/general');
     });
   });
 

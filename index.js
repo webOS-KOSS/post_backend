@@ -35,13 +35,13 @@ app.engine('html', require('ejs').renderFile);  //html로 렌더링
 app.use('/', require('./routes/post'));
 
 // Port setting
-var port = 80;
+var port = 3000;
 app.listen(port, function(){
   console.log('server on! http://localhost:'+port);
   
   /*-------------------weather alarm------------------------- */
   schedule.scheduleJob('0 * * * * *', function(){
-    console.log(new Date() + ' scheduler running!');
+    // console.log(new Date() + ' scheduler running!');
     var weather = require('./weather/weather');
     
   });

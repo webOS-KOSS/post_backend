@@ -8,12 +8,12 @@ const stnId = '109';  //수도권 id
 const dataType = 'JSON';
 const all_url = url + '?serviceKey=' + key +  '&dataType=' + dataType + '&stnId=' + stnId;   
 
-console.log("weather file open")
+// console.log("weather file open")
 
 const weather = request({all_url,
            method: 'GET'
         }, function(error, response, body) {
-          console.log("5초마다 실행");
+          // console.log("5초마다 실행");
     if (!error && response.statusCode == 200) {
       obj = JSON.parse(body);
       var resultCode = obj['response']['header']['resultCode'];
