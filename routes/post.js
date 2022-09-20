@@ -1,7 +1,6 @@
 var express  = require('express');
 var router = express.Router();
 var Post = require('../models/Post');
-var func = require('../public/js/func');
 
 /*---------------------------notice------------------------- */
 // Index 
@@ -17,7 +16,7 @@ router.get('/', function(req, res){
 
 // New
 router.get('/notice/new', function(req, res){
-  res.render('posts/notice/new'); 
+  res.render('posts/notice/new');
 });
 //추천여부, 시작시간,끝시간, 어떤 가전제어 어떻게?
 

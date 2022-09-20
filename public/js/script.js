@@ -1,3 +1,5 @@
+const { list } = require("nunjucks/src/filters");
+
 $(function(){
     function get2digits (num){
       return ('0' + num).slice(-2);
