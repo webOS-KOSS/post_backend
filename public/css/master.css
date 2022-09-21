@@ -1,3 +1,17 @@
+/* Bootstrap css */
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+
+/* Google Material icons */
+@import "http://fonts.googleapis.com/icon?family=Material+Icons";
+
+/* Propeller css */
+@import "dist/css/propeller.min.css";
+
+/* Bootstrap datetimepicker */
+@import "datetimepicker/css/bootstrap-datetimepicker.css";
+
+/* Propeller datetimepicker */
+@import "datetimepicker/css/pmd-datetimepicker.css";
 body {
     font-family: 'Open Sans', sans-serif;
   }
@@ -24,4 +38,17 @@ body {
   }
   .post-info{
     font-size: 0.8em;
+  } 
+  .courses {
+    display: flex;
+    flex-direction: column; /* control the flex direction ROW|COLUMN */
+    margin-bottom: 20px; /* for spacing only */
+  }
+  
+  .courses label {
+    margin: 5px 0; /* for spacing only*/
+  }
+  
+  .courses input[type="checkbox"] {
+    margin-right: 10px; /* for spacing only*/
   }

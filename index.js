@@ -29,7 +29,7 @@ app.use(methodOverride('_method'));
 app.use(flash()); 
 app.use(session({secret:'MySecret', resave:true, saveUninitialized:true})); 
 
-app.engine('html', require('ejs').renderFile);  //html로 렌더링
+// app.engine('html', require('ejs').renderFile);  //html로 렌더링
 
 // Routes
 app.use('/', require('./routes/post'));

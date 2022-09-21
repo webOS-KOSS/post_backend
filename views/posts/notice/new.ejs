@@ -18,29 +18,27 @@
           <textarea id="body" name="body" rows="5" class="form-control" placeholder="Content"></textarea>
         </div>
         
-        <div>
-        <label class="form-check-label">
-          <input type="checkbox" class="form-check-input" 
-              id="notification" 
-              name="notification"
-              value="noti_On" >
-        </label>
+        <div class="courses">
+          <label for="react" id="send"><input type="checkbox" id="react">React
+          <label for="appliance">가전 제어</label>
+          <select name="appliance">
+            <option value="blind">blind</option>
+            <option value="window">window</option>
+            <option value="light">light</option>
+          </select> 
+          <label for="operation">동작 방식</label>
+          <select name="operation">
+            <option value="on">ON</option>
+            <option value="off">OFF</option>
+          </select>
+          </label>
         </div>
 
-        <div>
-          <label for="appliance">가전 제어</label>
-            <select name="appliance">
-              <option value="blind">blind</option>
-              <option value="window">window</option>
-              <option value="light">light</option>
-            </select>
-
-          <label for="operation">동작 방식</label>
-            <select name="operation">
-              <option value="on">ON</option>
-              <option value="off">OFF</option>
-            </select>
-          <label for="time">시간</label>
+          <!--Default date and time picker -->
+          <div class="form-group pmd-textfield pmd-textfield-floating-label">
+          	<label class="control-label" for="datetimepicker-default">시간</label>
+          	<input type="text" id="datetimepicker-default" class="form-control" />
+          </div>
         </div>
         
         <div class="form-group">
@@ -52,9 +50,29 @@
           <a class="btn btn-primary" href="/">Back</a>
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-
       </form>
-
     </div>
+    <!-- jquery JS -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <!-- Bootstrap js -->
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Propeller textfield js --> 
+    <script type="text/javascript" src="dist/js/propeller.min.js"></script>
+
+    <!-- Datepicker moment with locales -->
+    <script type="text/javascript" language="javascript" src="datetimepicker/js/moment-with-locales.js"></script>
+
+    <!-- Propeller Bootstrap datetimepicker -->
+    <script type="text/javascript" language="javascript" src="datetimepicker/js/bootstrap-datetimepicker.js"></script>
+
+<script>
+	// Default date and time picker
+	$('#datetimepicker-default').datetimepicker();
+</script>
   </body>
 </html>
