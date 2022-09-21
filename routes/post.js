@@ -25,9 +25,18 @@ router.post('/', function(req, res){
   noticeRequest.selectbox = 'notice';
   noticeRequest.title = req.body.title;
   noticeRequest.body = req.body.body;
+
   if (req.body.notification == 'noti_On'){
-    let applaince = req.body.applaince;
-    let operation = req.body.operation;
+    var noticeSend = new Array(
+      {title:noticeRequest.title, content:noticeRequest.body},
+      {start:'10H 30M',end:'12H 00M'},
+      {appliance:req.body.appliance, operation: req.body.operation},
+      );
+    var jsonString = JSON.stringify(noticeSend);      
+    var jsonData = JSON.parse(jsonString);
+//2002-11-18 19:00:00 시간 데이터 이런 식으로
+    console.log("jsonString: ", jsonString);
+    console.log("jsonData: ", jsonData);
   }
 
   if(req.body.password == "notice"){
