@@ -36,11 +36,12 @@ $(function(){
     convertDate();
     convertDateTime();
 
-    let send = document.querySelector("#send");
-    send.addEventListener("click", function() {
-      let selectedCheckboxes = document.querySelectorAll(".courses input[type=checkbox]:checked");
-      selectedCheckboxes.forEach(function(item) {
-        item.parentElement.style.display = "none";
-      });
-    });
+    function doDisplay(){ 	
+      var con = document.getElementById("send"); 	
+      if(con.style.display=='none'){ 		
+        con.style.display = 'block'; 	
+      }else{ 		
+        con.style.display = 'none'; 	
+      } 
+  }
   });

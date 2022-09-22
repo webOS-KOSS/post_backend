@@ -17,9 +17,9 @@
           <label for="body">Content</label>
           <textarea id="body" name="body" rows="5" class="form-control" placeholder="Content"></textarea>
         </div>
-        
-        <div class="courses">
-          <label for="react" id="send"><input type="checkbox" id="react">React
+      
+        <input type="checkbox" id="react" onclick="location.href='javascript:doDisplay()'"><label for="react">알림</label>
+        <div id="send" class="check">
           <label for="appliance">가전 제어</label>
           <select name="appliance">
             <option value="blind">blind</option>
@@ -31,7 +31,6 @@
             <option value="on">ON</option>
             <option value="off">OFF</option>
           </select>
-          </label>
         </div>
 
           <!--Default date and time picker -->
