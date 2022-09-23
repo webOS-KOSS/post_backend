@@ -7,6 +7,7 @@ var flash = require('connect-flash');
 var session = require('express-session'); 
 var app = express();
 const schedule = require('node-schedule');
+var path = require('path');
 // const weather = require('./weather/weather');
 
 // DB setting
@@ -21,6 +22,7 @@ db.on('error', function(err){
 
 // Other settings
 app.set('view engine', 'ejs');
+// app.use(express.static(__dirname+'/public'));
 app.use(express.static(__dirname+'/public'));
 
 app.use(bodyParser.json());
@@ -29,7 +31,7 @@ app.use(methodOverride('_method'));
 app.use(flash()); 
 app.use(session({secret:'MySecret', resave:true, saveUninitialized:true})); 
 
-// app.engine('html', require('ejs').renderFile);  //html로 렌더링
+app.engine('html', require('ejs').renderFile);  //html로 렌더링
 
 // Routes
 app.use('/', require('./routes/post'));

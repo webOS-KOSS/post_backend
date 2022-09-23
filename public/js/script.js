@@ -36,12 +36,23 @@ $(function(){
     convertDate();
     convertDateTime();
 
+    $('#startTime').datetimepicker({
+      uiLibrary: 'bootstrap4',
+      modal: true,
+      footer: true
+    });
+    $('#endTime').datetimepicker({
+      uiLibrary: 'bootstrap4',
+      modal: true,
+      footer: true
+    });
+
     function doDisplay(){ 	
       var con = document.getElementById("send"); 	
-      if(con.style.display=='none'){ 		
+      if(!con.checked){
+        con.style.display = 'none';
+      }else{
         con.style.display = 'block'; 	
-      }else{ 		
-        con.style.display = 'none'; 	
-      } 
-  }
+      }
+    }
   });

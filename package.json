@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "air-datepicker": "^3.3.0",
     "body-parser": "^1.20.0",
     "cheerio": "^1.0.0-rc.12",
     "connect-flash": "^0.1.1",
