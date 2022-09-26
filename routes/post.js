@@ -1,7 +1,7 @@
 var express  = require('express');
 var router = express.Router();
 var Post = require('../models/Post');
-
+var util = require('../util');
 /*---------------------------notice------------------------- */
 // Index 
 router.get('/', function(req, res){
@@ -21,25 +21,27 @@ router.get('/notice/new', function(req, res){
 
 // create
 router.post('/', function(req, res){
-  var noticeRequest = new Object();
-  noticeRequest.selectbox = 'notice';
-  noticeRequest.title = req.body.title;
-  noticeRequest.body = req.body.body;
-
-  if (req.body.notification == 'noti_On'){
+  //알림 체크한 경우
+  if (req.body.notification == 'noti_On'){ 
+    //notice 받으면 정리
+    var noticeRequest = new Object();
+    noticeRequest.selectbox = 'notice';
+    noticeRequest.title = req.body.title;
+    noticeRequest.body = req.body.body;
+    noticeRequest.startTime = util.time(req.body.startTime);
+    noticeRequest.endTime = util.time(req.body.endTime);
     var noticeSend = new Array(
       {title:noticeRequest.title, content:noticeRequest.body},
-      {start:'10H 30M',end:'12H 00M'},
+      {start:noticeRequest.startTime, end:noticeRequest.endTime},
       {appliance:req.body.appliance, operation: req.body.operation},
       );
     var jsonString = JSON.stringify(noticeSend);      
     var jsonData = JSON.parse(jsonString); 
-//2002-11-18 19:00:00 시간 데이터 이런 식으로
     console.log("jsonString: ", jsonString);
     console.log("jsonData: ", jsonData);
   }
-
-  if(req.body.password == "notice"){
+  
+  if(req.body.password == "notice"){  //DB에 올리기
   Post.create(noticeRequest, function(err, post){
     if(err) return res.json(err);
     res.redirect('/');

@@ -41,6 +41,7 @@ $(function(){
       modal: true,
       footer: true
     });
+    
     $('#endTime').datetimepicker({
       uiLibrary: 'bootstrap4',
       modal: true,

@@ -18,4 +18,15 @@ util.parseError = function(errors){
   return parsed;
 }
 
+util.time = function(time){
+  hour = time.slice(0,2)
+  minute = time.slice(3,5)
+  month = time.slice(6,8)
+  date = time.slice(9,11)
+  year = time.slice(12,17)
+
+  AllDate = year + "-" + month + "-" + date + " " + hour + ":" + minute + ":00"
+  return AllDate
+}
+
 module.exports = util;
