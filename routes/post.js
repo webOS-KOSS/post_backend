@@ -21,13 +21,25 @@ router.get('/notice/new', function(req, res){
 
 // create
 router.post('/', function(req, res){
+  console.log(req.body);
+  //post 받으면 정리 이 데이터만 데베에 저장
+  var noticeRequest = new Object();
+  noticeRequest.selectbox = 'notice';
+  noticeRequest.title = req.body.title;
+  noticeRequest.body = req.body.body;
+
+  if(req.body.password == "notice"){  //DB에 올리기
+    Post.create(noticeRequest, function(err, post){
+      if(err) return res.json(err);
+      res.redirect('/');
+      });
+  }
+    else{
+      res.redirect('/');
+    }
+
   //알림 체크한 경우
-  if (req.body.notification == 'noti_On'){ 
-    //notice 받으면 정리
-    var noticeRequest = new Object();
-    noticeRequest.selectbox = 'notice';
-    noticeRequest.title = req.body.title;
-    noticeRequest.body = req.body.body;
+  if (req.body.notification == 'on'){ 
     noticeRequest.startTime = util.time(req.body.startTime);
     noticeRequest.endTime = util.time(req.body.endTime);
     var noticeSend = new Array(
@@ -35,20 +47,8 @@ router.post('/', function(req, res){
       {start:noticeRequest.startTime, end:noticeRequest.endTime},
       {appliance:req.body.appliance, operation: req.body.operation},
       );
-    var jsonString = JSON.stringify(noticeSend);      
-    var jsonData = JSON.parse(jsonString); 
-    console.log("jsonString: ", jsonString);
-    console.log("jsonData: ", jsonData);
-  }
-  
-  if(req.body.password == "notice"){  //DB에 올리기
-  Post.create(noticeRequest, function(err, post){
-    if(err) return res.json(err);
-    res.redirect('/');
-    });
-  }
-  else{
-    res.redirect('/');
+    var jsonString = JSON.stringify(noticeSend);      //jsonString:  [{"title":"r","content":"ew"},{"start":"2022-09-13 03:35:00","end":"2022-09-29 15:23:00"},{"appliance":"blind","operation":"on"}]
+    var jsonData = JSON.parse(jsonString);  //jsonData:  [{ title: 'r', content: 'ew' }, { start: '2022-09-13 03:35:00', end: '2022-09-29 15:23:00' }, { appliance: 'blind', operation: 'on' }]  
   }
 });
 

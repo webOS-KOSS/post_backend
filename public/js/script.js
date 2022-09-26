@@ -47,13 +47,4 @@ $(function(){
       modal: true,
       footer: true
     });
-
-    function doDisplay(){ 	
-      var con = document.getElementById("send"); 	
-      if(!con.checked){
-        con.style.display = 'none';
-      }else{
-        con.style.display = 'block'; 	
-      }
-    }
   });
