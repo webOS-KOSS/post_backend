@@ -1,4 +1,3 @@
-const { string } = require('@webosose/ares-cli/lib/base/help-format');
 const schedule = require('node-schedule');
 
 function carSchema(mongoose, collection){
