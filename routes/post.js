@@ -2,6 +2,11 @@ var express  = require('express');
 var router = express.Router();
 var Post = require('../models/Post');
 var util = require('../util');
+const mosquitto = require("mqtt");
+const mqtt = require("./mqtt_lib");
+
+const ip = "43.201.54.39";
+mqtt.init(mosquitto);
 /*---------------------------notice------------------------- */
 // Index 
 router.get('/', function(req, res){
@@ -42,14 +47,25 @@ router.post('/', function(req, res){
   if (req.body.notification == 'on'){ 
     noticeRequest.startTime = util.time(req.body.startTime);
     noticeRequest.endTime = util.time(req.body.endTime);
-    var noticeSend = new Array(
-      {title:noticeRequest.title, content:noticeRequest.body},
-      {start:noticeRequest.startTime, end:noticeRequest.endTime},
-      {appliance:req.body.appliance, operation: req.body.operation},
-      );
-    var jsonString = JSON.stringify(noticeSend);      //jsonString:  [{"title":"r","content":"ew"},{"start":"2022-09-13 03:35:00","end":"2022-09-29 15:23:00"},{"appliance":"blind","operation":"on"}]
-    var jsonData = JSON.parse(jsonString);  //jsonData:  [{ title: 'r', content: 'ew' }, { start: '2022-09-13 03:35:00', end: '2022-09-29 15:23:00' }, { appliance: 'blind', operation: 'on' }]  
+    var noticeSend = {
+      content: {title:noticeRequest.title, body:noticeRequest.body}, 
+      recommend: true,
+      control: {device:req.body.appliance, func: req.body.operation},
+      time: {start:noticeRequest.startTime, end:noticeRequest.endTime},
+      
+    };
+  } else {
+    noticeRequest.startTime = util.time(req.body.startTime);
+    noticeRequest.endTime = util.time(req.body.endTime);
+    var noticeSend = {
+      content: {title:noticeRequest.title, body:noticeRequest.body}, 
+      recommend: false,
+    };
   }
+  console.log(noticeSend)
+  var jsonString = JSON.stringify(noticeSend);      //jsonString:  [{"title":"r","content":"ew"},{"start":"2022-09-13 03:35:00","end":"2022-09-29 15:23:00"},{"appliance":"blind","operation":"on"}]
+  mqtt.connect(ip);
+  mqtt.publish("post/notice", jsonString);
 });
 
 // show
