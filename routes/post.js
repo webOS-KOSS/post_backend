@@ -5,7 +5,7 @@ var util = require('../util');
 const mosquitto = require("mqtt");
 const mqtt = require("./mqtt_lib");
 
-const ip = "43.201.54.39";
+const ip = "3.34.50.139";
 mqtt.init(mosquitto);
 /*---------------------------notice------------------------- */
 // Index 
